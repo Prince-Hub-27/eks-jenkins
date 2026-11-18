@@ -1,0 +1,22 @@
+# .NET build output
+bin/
+obj/
+build-check/
+
+# User-specific files
+*.user
+*.suo
+
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+appsettings.Development.json
+secrets.json
+
+# IDE files
+.vscode/
+.idea/
+
+# Logs
+*.log

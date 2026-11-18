@@ -1,0 +1,11 @@
+**/bin/
+**/obj/
+build-check/
+.git/
+.vscode/
+.idea/
+.env
+.env.*
+*.pem
+*.key
+secrets/
