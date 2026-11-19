@@ -12,12 +12,23 @@ spec:
       labels:
         app: dotnet-api
     spec:
+      serviceAccountName: dotnet-api-sa
       containers:
         - name: dotnet-api
           image: 712685518638.dkr.ecr.ap-southeast-2.amazonaws.com/dotnet-api:v1
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
+          env:
+            - name: S3__BucketName
+              value: "eks-jenkins-dotnet-files-712685518638-20261119"
+            - name: S3__KeyPrefix
+              value: "training-uploads"
+            - name: ConnectionStrings__Rds
+              valueFrom:
+                secretKeyRef:
+                  name: dotnet-api-db
+                  key: connection-string
           resources:
             requests:
               cpu: 100m
