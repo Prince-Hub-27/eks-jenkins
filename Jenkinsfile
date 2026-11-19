@@ -1,3 +1,4 @@
+
 pipeline {
     agent any
 
@@ -49,9 +50,14 @@ pipeline {
 
                     export KUBECONFIG="$WORKSPACE/.kube/config"
 
+                    # Apply Kubernetes configuration
+                    kubectl apply -f deployment.yaml
+
+                    # Update the application image
                     kubectl set image deployment/$DEPLOYMENT_NAME \
                         $CONTAINER_NAME=$IMAGE_URI:$BUILD_NUMBER
 
+                    # Wait for deployment
                     kubectl rollout status deployment/$DEPLOYMENT_NAME \
                         --timeout=180s
 
